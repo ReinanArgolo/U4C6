@@ -37,6 +37,9 @@ pico_sdk_init()
 
 add_executable(U4C6 U4C6.c )
 
+# Then generate PIO header
+pico_generate_pio_header(U4C3 ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
+
 pico_set_program_name(U4C6 "U4C6")
 pico_set_program_version(U4C6 "0.1")
 
@@ -55,7 +58,7 @@ target_include_directories(U4C6 PRIVATE
 
 # Add any user requested libraries
 target_link_libraries(U4C6 
-        
+        hardware_i2c
         )
 
 pico_add_extra_outputs(U4C6)
