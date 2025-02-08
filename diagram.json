@@ -26,27 +26,19 @@
       "left": 57.06,
       "attrs": { "rows": "5", "cols": "5", "matrixLayout": "serpentine" }
     },
-    { "type": "wokwi-rgb-led", "id": "rgb1", "top": 234.4, "left": -296.5, "attrs": {} },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 234.4,
+      "left": -296.5,
+      "attrs": { "common": "cathode" }
+    },
     {
       "type": "wokwi-resistor",
       "id": "r1",
-      "top": 282.35,
-      "left": -230.4,
-      "attrs": { "value": "220" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r2",
-      "top": 301.55,
-      "left": -230.4,
-      "attrs": { "value": "220" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r3",
-      "top": 320.75,
-      "left": -230.4,
-      "attrs": { "value": "220" }
+      "top": 311.15,
+      "left": -240,
+      "attrs": { "value": "1000" }
     }
   ],
   "connections": [
@@ -73,13 +65,11 @@
     [ "neopixels:DIN", "pico:GP7", "green", [ "v0" ] ],
     [ "neopixels:VCC", "pico:VBUS", "red", [ "v0" ] ],
     [ "neopixels:GND", "pico:GND.8", "black", [ "v0" ] ],
-    [ "rgb1:B", "r1:1", "green", [ "v0" ] ],
-    [ "rgb1:R", "r2:1", "green", [ "v0" ] ],
-    [ "rgb1:G", "r3:1", "green", [ "v0" ] ],
-    [ "r1:2", "pico:GP11", "green", [ "v0" ] ],
-    [ "rgb1:COM", "pico:GND.4", "black", [ "v57.2", "h134.5", "v-28.8" ] ],
-    [ "r3:2", "pico:GP13", "green", [ "v0", "h18", "v-19.2" ] ],
-    [ "r2:2", "pico:GP12", "green", [ "v0", "h8.4", "v-9.6" ] ]
+    [ "rgb1:R", "pico:GP13", "red", [ "v0" ] ],
+    [ "rgb1:G", "pico:GP11", "green", [ "v0" ] ],
+    [ "rgb1:B", "pico:GP12", "blue", [ "h67.2", "v-1.6" ] ],
+    [ "r1:2", "pico:GND.4", "black", [ "v0" ] ],
+    [ "rgb1:COM", "r1:1", "black", [ "v9.2", "h28.9", "v19.2" ] ]
   ],
   "dependencies": {}
 }
