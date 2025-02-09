@@ -22,20 +22,20 @@
 
 int main()
 {
-    // stdio_init_all();
+    stdio_init_all();
 
-    // gpio_init(LED_BLUE_PIN);
-    // gpio_init(LED_RED_PIN);
-    // gpio_init(LED_GREEN_PIN);
-    // gpio_init(LED_MATRIZ_PIN);
-    // gpio_init(B1_PIN);
-    // gpio_init(B2_PIN);
-    // gpio_set_dir(LED_BLUE_PIN, GPIO_OUT);
-    // gpio_set_dir(LED_RED_PIN, GPIO_OUT);
-    // gpio_set_dir(LED_GREEN_PIN, GPIO_OUT);
-    // gpio_set_dir(LED_MATRIZ_PIN, GPIO_OUT);
-    // gpio_set_dir(B1_PIN, GPIO_IN);
-    // gpio_set_dir(B2_PIN, GPIO_IN);
+    gpio_init(LED_BLUE_PIN);
+    gpio_init(LED_RED_PIN);
+    gpio_init(LED_GREEN_PIN);
+    gpio_init(LED_MATRIZ_PIN);
+    gpio_init(B1_PIN);
+    gpio_init(B2_PIN);
+    gpio_set_dir(LED_BLUE_PIN, GPIO_OUT);
+    gpio_set_dir(LED_RED_PIN, GPIO_OUT);
+    gpio_set_dir(LED_GREEN_PIN, GPIO_OUT);
+    gpio_set_dir(LED_MATRIZ_PIN, GPIO_OUT);
+    gpio_set_dir(B1_PIN, GPIO_IN);
+    gpio_set_dir(B2_PIN, GPIO_IN);
 
     // I2C
     i2c_init(i2c0, 400 * 1000);
@@ -58,8 +58,14 @@ int main()
 
     while (true) {
         sleep_ms(40);
-        cor  = !cor;
-        ssd1306_rect(&ssd, 3, 3, 122, 58, cor, !cor);
+        cor = !cor;
+        // Atualiza o conteúdo do display com animações
+        ssd1306_fill(&ssd, !cor); // Limpa o display
+        ssd1306_rect(&ssd, 3, 3, 122, 58, cor, !cor); // Desenha um retângulo
+        ssd1306_draw_char(&ssd, 'a', 60, 30);
+        ssd1306_send_data(&ssd); // Atualiza o display
+
+        sleep_ms(1000);
 
     }
 }
