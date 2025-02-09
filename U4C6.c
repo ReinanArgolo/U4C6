@@ -25,24 +25,25 @@ int main()
     bool cor = true;
 
     while (true) {
-        sleep_ms(40);
         cor = !cor;
 
         if(stdio_usb_connected()) {
             char c;
-            if(scanf("%c", &c) == 1) {
-                ssd1306_draw_char(&ssd, c, 60, 30);
-            }
+            printf("Digite um caractere: ");
+            scanf(" %c", &c); // Adicionado espaço antes de %c para consumir qualquer espaço em branco
+            printf("Caractere lido: %c\n", c); // Print de depuração para verificar o caractere lido
+
+            ssd1306_fill(&ssd, false); // Limpa o display antes de desenhar o novo caractere
+            printf("Desenhando caractere...\n"); // Print de depuração antes de desenhar
+            ssd1306_draw_char(&ssd, c, 60, 30);
+            ssd1306_send_data(&ssd);
+
+            printf("Caractere digitado: %c\n", c);
         }
 
-        
         // Atualiza o conteúdo do display com animações
-        ssd1306_fill(&ssd, !cor); // Limpa o display
-        ssd1306_rect(&ssd, 3, 3, 122, 58, cor, !cor); // Desenha um retângulo
-        ssd1306_draw_char(&ssd, 'a', 60, 30);
         ssd1306_send_data(&ssd); // Atualiza o display
 
         sleep_ms(1000);
-
     }
 }
