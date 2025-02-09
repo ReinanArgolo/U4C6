@@ -35,10 +35,8 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(U4C6 U4C6.c )
+add_executable(U4C6 U4C6.c inc/ssd1306.c)
 
-# Then generate PIO header
-pico_generate_pio_header(U4C3 ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
 
 pico_set_program_name(U4C6 "U4C6")
 pico_set_program_version(U4C6 "0.1")
