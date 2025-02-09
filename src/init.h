@@ -51,7 +51,7 @@ void init_led_matriz() {
 }
 
 void init_i2c(ssd1306_t *ssd) {
-    i2c_init(i2c0, 400 * 1000);
+    i2c_init(I2C_PORT, 400 * 1000); // Ensure correct I2C port is used
     gpio_set_function(LCD_SDA_PIN, GPIO_FUNC_I2C);
     gpio_set_function(LCD_SCL_PIN, GPIO_FUNC_I2C);   
     gpio_pull_up(LCD_SCL_PIN);
@@ -60,5 +60,4 @@ void init_i2c(ssd1306_t *ssd) {
     ssd1306_init(ssd, WIDTH, HEIGHT, 0, ENDR_LCD, I2C_PORT);
     ssd1306_config(ssd);
     ssd1306_send_data(ssd);
-
 }
