@@ -6,9 +6,9 @@
 
 
 // LEDS PINS
-#define LED_BLUE_PIN 11
-#define LED_RED_PIN 12
-#define LED_GREEN_PIN 13
+#define LED_BLUE_PIN 12
+#define LED_RED_PIN 13
+#define LED_GREEN_PIN 11
 
 // BUTTONS PINS
 #define B1_PIN 5
@@ -36,6 +36,7 @@ void init_leds() {
     gpio_set_dir(LED_BLUE_PIN, GPIO_OUT);
     gpio_set_dir(LED_RED_PIN, GPIO_OUT);
     gpio_set_dir(LED_GREEN_PIN, GPIO_OUT);
+
 }
 
 void init_buttons() {
@@ -43,6 +44,8 @@ void init_buttons() {
     gpio_init(B2_PIN);
     gpio_set_dir(B1_PIN, GPIO_IN);
     gpio_set_dir(B2_PIN, GPIO_IN);
+    gpio_pull_up(B1_PIN);
+    gpio_pull_up(B2_PIN);
 }
 
 void init_led_matriz() {
