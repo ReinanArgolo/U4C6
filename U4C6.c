@@ -13,11 +13,20 @@
 // Global variable for the ssd object
 ssd1306_t ssd;
 
+#define DEBOUNCE_DELAY_MS 200
+
+// Global variables for debouncing
+absolute_time_t last_interrupt_time_b1 = {0};
+absolute_time_t last_interrupt_time_b2 = {0};
 
 // Function to handle button press interrupt
 void button_callback(uint gpio, uint32_t events) {
-    printf("Interrupt triggered for GPIO %d\n", gpio);
+    absolute_time_t current_time = get_absolute_time();
     if (gpio == B1_PIN) {
+        if (absolute_time_diff_us(last_interrupt_time_b1, current_time) < DEBOUNCE_DELAY_MS * 1000) {
+            return; // Ignore if within debounce delay
+        }
+        last_interrupt_time_b1 = current_time;
         printf("Botão 1 pressionado\n");
         gpio_put(LED_GREEN_PIN, !gpio_get(LED_GREEN_PIN));
         ssd1306_fill(&ssd, false); // Clear the display before drawing
@@ -30,6 +39,10 @@ void button_callback(uint gpio, uint32_t events) {
         }
         ssd1306_send_data(&ssd);
     } else if (gpio == B2_PIN) {
+        if (absolute_time_diff_us(last_interrupt_time_b2, current_time) < DEBOUNCE_DELAY_MS * 1000) {
+            return; // Ignore if within debounce delay
+        }
+        last_interrupt_time_b2 = current_time;
         printf("Botão 2 pressionado\n");
         gpio_put(LED_BLUE_PIN, !gpio_get(LED_BLUE_PIN));
         ssd1306_fill(&ssd, false); // Clear the display before drawing
