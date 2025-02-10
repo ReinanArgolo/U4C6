@@ -34,9 +34,6 @@ Este projeto utiliza uma variedade de componentes eletrônicos conectados a um R
 ## Conexões
 As conexões entre os componentes e o Raspberry Pi Pico são detalhadas no arquivo `diagram.json`.
 
-## Editor
-Este projeto foi criado utilizando o editor Wokwi.
-
 ## Autor
 Reinan Lopes Argolo
 
