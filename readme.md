@@ -39,3 +39,6 @@ Este projeto foi criado utilizando o editor Wokwi.
 
 ## Autor
 Reinan Lopes Argolo
+
+## Vídeo Demonstrativo
+[Link para o vídeo](https://youtu.be/sZ5d_SakxSE)
